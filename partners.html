@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partners – Community Aid for Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== Partners Main Section ===== */
+    .partners-section {
+      padding: 6rem 0;
+      background-color: #ffffff;
+    }
+
+    .partners-intro {
+      max-width: 50rem;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .partners-intro h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+    }
+
+    .partners-intro p {
+      font-size: 1.25rem;
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    /* Partner Type Cards */
+    .partner-types {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 50rem;
+      margin: 0 auto 5rem;
+      text-align: left;
+    }
+
+    @media (min-width: 768px) {
+      .partner-types { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .partner-type-card {
+      padding: 1.5rem;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .partner-type-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      font-family: var(--font-sans);
+    }
+
+    .partner-type-card p {
+      font-size: 0.875rem;
+      color: #475569;
+      line-height: 1.65;
+    }
+
+    .partner-type-card.color-green h3 { color: var(--primary); }
+    .partner-type-card.color-blue  h3 { color: var(--secondary); }
+    .partner-type-card.color-dark  h3 { color: #0f172a; }
+
+    /* CTA Block */
+    .partner-cta-block {
+      background-color: #0f172a;
+      padding: 4rem 3rem;
+      text-align: center;
+      max-width: 50rem;
+      margin: 0 auto;
+    }
+
+    .partner-cta-block h3 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
+    .partner-cta-block p {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      margin-bottom: 2.5rem;
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="../assets/favicon-CNdghIRy.png" alt="Community Aid for Development Logo" />
+        <span class="navbar-brand-text">Community Aid<br /><span>for Development</span></span>
+      </a>
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="partners.html" class="active">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+        </ul>
+      </nav>
+      <div class="navbar-cta"><a href="contact.html">Support Our Work</a></div>
+      <button class="mobile-menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-menu">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a><a href="partners.html">Partners</a><a href="contact.html">Contact</a>
+      <a href="report-issue.html">Report Issue</a>
+      <a href="contact.html" class="mobile-cta">Support Our Work</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Page Header (no background image for Partners in the original) -->
+    <section class="page-header" style="background-color: #0f172a;">
+      <div class="page-header-gradient"></div>
+      <div class="container page-header-content">
+        <h1>Partner With Us</h1>
+        <p>This work requires a coalition. Join us in equipping the next generation of Ugandan leaders.</p>
+      </div>
+    </section>
+
+    <!-- Partners Content -->
+    <section class="partners-section">
+      <div class="container">
+
+        <div class="partners-intro">
+          <h2>Why Partner with Community Aid for Development?</h2>
+          <p>
+            We are deeply embedded in the communities we serve. When you partner with us, your resources bypass bureaucratic friction
+            and go directly to frontline impact. We offer transparency, measurable outcomes, and a relentless drive to scale what works.
+          </p>
+        </div>
+
+        <div class="partner-types">
+          <div class="partner-type-card color-green">
+            <h3>Foundations</h3>
+            <p>Fund scalable models for rural digital literacy and agricultural resilience.</p>
+          </div>
+          <div class="partner-type-card color-blue">
+            <h3>Tech Companies</h3>
+            <p>Provide hardware, software licenses, or mentorship for our coding bootcamps.</p>
+          </div>
+          <div class="partner-type-card color-dark">
+            <h3>Individuals</h3>
+            <p>Sponsor a student, fund a computer lab, or provide monthly operational support.</p>
+          </div>
+        </div>
+
+        <div class="partner-cta-block">
+          <h3>Ready to initiate a partnership?</h3>
+          <p>
+            We are actively seeking strategic partners for 2025 to expand our digital skills hubs into three new districts.
+          </p>
+          <a href="contact.html" class="btn btn-primary btn-lg">Contact Our Team</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-link">
+            <img src="../assets/favicon-CNdghIRy.png" alt="CAD Logo" />
+            <span class="footer-brand-text">Community Aid<br /><span>for Development</span></span>
+          </a>
+          <p>Community Aid for Development Initiative. A youth-led force for change empowering rural and underserved communities in Uganda through digital skills, livelihood, and leadership.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="report-issue.html">Report an Issue</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-contact-list">
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Uganda</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:caduganda@gmail.com">caduganda@gmail.com</a></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.89a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg><a href="tel:+256702797391">+256 702 797 391</a></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><a href="https://wa.me/256702797391" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Support the Mission</h3>
+          <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1.5rem;">Your support helps us build computer labs, train youth, and plant seeds for local food security.</p>
+          <a href="contact.html" class="footer-donate-btn">Donate Now</a>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Community Aid for Development Initiative (CAD Uganda). All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report an Issue – Community Aid for Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== Context Dark Section ===== */
+    .context-section {
+      padding: 4rem 0;
+      background-color: #020617;
+      color: #ffffff;
+    }
+
+    .context-header {
+      max-width: 50rem;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .context-header h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .context-header h2 span { color: var(--primary); }
+
+    .context-header p {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      line-height: 1.75;
+    }
+
+    .context-image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .context-image-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .context-image-grid div {
+      overflow: hidden;
+    }
+
+    .context-image-grid img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .context-image-grid div:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ===== Forms Section ===== */
+    .forms-section {
+      padding: 6rem 0;
+      background-color: #ffffff;
+    }
+
+    .forms-inner {
+      max-width: 50rem;
+      margin: 0 auto;
+    }
+
+    .forms-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .forms-header h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+
+    .forms-header p {
+      font-size: 1.125rem;
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    /* Individual form block */
+    .form-block {
+      margin-bottom: 4rem;
+    }
+
+    .form-block-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-block-number {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .form-block-number.bg-green  { background-color: var(--primary); }
+    .form-block-number.bg-blue   { background-color: var(--secondary); }
+    .form-block-number.bg-dark   { background-color: #0f172a; }
+
+    .form-block-title h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      font-family: var(--font-display);
+    }
+
+    .form-block-title p {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      margin-top: 0.15rem;
+    }
+
+    .form-iframe-wrap {
+      border: 1px solid #e2e8f0;
+      background-color: #f8fafc;
+      overflow: hidden;
+    }
+
+    .form-iframe-wrap iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+
+    /* External link card */
+    .external-link-card {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 640px) {
+      .external-link-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .external-link-card p.title {
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 0.25rem;
+    }
+
+    .external-link-card p.sub {
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+
+    .btn-external {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    /* Urgent contact note */
+    .urgent-note {
+      background-color: rgba(0,145,76,.05);
+      border: 1px solid rgba(0,145,76,.2);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .urgent-note p {
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .urgent-note a.green { color: var(--primary); font-weight: 700; }
+    .urgent-note a.green:hover { text-decoration: underline; }
+    .urgent-note a.blue  { color: var(--secondary); font-weight: 700; }
+    .urgent-note a.blue:hover  { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="../assets/favicon-CNdghIRy.png" alt="Community Aid for Development Logo" />
+        <span class="navbar-brand-text">Community Aid<br /><span>for Development</span></span>
+      </a>
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="report-issue.html" class="active">Report Issue</a></li>
+        </ul>
+      </nav>
+      <div class="navbar-cta"><a href="contact.html">Support Our Work</a></div>
+      <button class="mobile-menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-menu">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a><a href="partners.html">Partners</a><a href="contact.html">Contact</a>
+      <a href="report-issue.html">Report Issue</a>
+      <a href="contact.html" class="mobile-cta">Support Our Work</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <img
+        src="../assets/hush-naidoo-jade-photography-1eADFOn_e3o-unsplash_1775054797540-CUMg0ftu.jpg"
+        alt="Report Issue header"
+        class="page-header-bg"
+      />
+      <div class="page-header-gradient"></div>
+      <div class="container page-header-content">
+        <h1>Report an Issue</h1>
+        <p>Notice a problem in your community or environment? Use the forms below to let us know.</p>
+      </div>
+    </section>
+
+    <!-- Community Issues Context -->
+    <section class="context-section">
+      <div class="container">
+        <div class="context-header">
+          <h2>Real Issues. <span>Real Communities.</span></h2>
+          <p>
+            From environmental degradation to broken infrastructure, our communities face challenges that demand local voices.
+            Your report helps Community Aid for Development direct resources where they are needed most.
+          </p>
+        </div>
+        <div class="context-image-grid">
+          <div>
+            <img src="../assets/chauldry-agho-C75JhUSmnU8-unsplash_1775054797539-Lo3hrYoo.jpg" alt="Waste and environmental issues in communities" />
+          </div>
+          <div>
+            <img src="../assets/adil-edin-e5Ja8Z_WEvA-unsplash_1775054797539-CEWk34HG.jpg" alt="Community pollution issues" />
+          </div>
+          <div>
+            <img src="../roya-ann-miller-BkTsP32Dfnc-unsplash_1775054797540.jpg" alt="Deforestation and environmental damage" />
+          </div>
+          <div>
+            <img src="../assets/alex-dvyxT32PFFk-unsplash_1775054797539-C7BK4rMn.jpg" alt="Flooded rural road and infrastructure issues" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Google Forms -->
+    <section class="forms-section">
+      <div class="container">
+        <div class="forms-inner">
+
+          <div class="forms-header">
+            <h2>Submit Your Report</h2>
+            <div class="divider-primary"></div>
+            <p style="margin-top: 1.5rem;">
+              Choose the form that best matches the issue you want to report.
+              All submissions are reviewed by our community team.
+            </p>
+          </div>
+
+          <!-- Form 01 – Community Issue -->
+          <div class="form-block">
+            <div class="form-block-header">
+              <div class="form-block-number bg-green">01</div>
+              <div class="form-block-title">
+                <h3>Community Issue Report</h3>
+                <p>For general community concerns and program feedback</p>
+              </div>
+            </div>
+            <div class="form-iframe-wrap">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScIqao2sqoF3FewKhoOMP7NwG7RLsC1SNh7GKpcVSZVoyjGJQ/viewform?embedded=true"
+                height="520"
+                title="Community Issue Report Form"
+              >
+                Loading form…
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Form 02 – Environmental Issue -->
+          <div class="form-block">
+            <div class="form-block-header">
+              <div class="form-block-number bg-blue">02</div>
+              <div class="form-block-title">
+                <h3>Environmental Issue Report</h3>
+                <p>For environmental concerns, waste management, and climate issues</p>
+              </div>
+            </div>
+            <div class="form-iframe-wrap">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSf8ZWJqOEkLuc859x-_9kv1ElQmxAIDGPj4ubv6bMBEdpcnDw/viewform?embedded=true"
+                height="755"
+                title="Environmental Issue Report Form"
+              >
+                Loading form…
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Form 03 – External Link -->
+          <div class="form-block">
+            <div class="form-block-header">
+              <div class="form-block-number bg-dark">03</div>
+              <div class="form-block-title">
+                <h3>Additional Report Form</h3>
+                <p>Open in a new tab for the full reporting experience</p>
+              </div>
+            </div>
+            <div class="external-link-card">
+              <div>
+                <p class="title">Submit a detailed report</p>
+                <p class="sub">Click the button to open the extended report form in a new tab.</p>
+              </div>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdsq3b4fPuvOgzZLnKwJiTPSWCtJx2op7UcWThA_lA1oL-8Zw/viewform?usp=header"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-dark btn-external"
+              >
+                Open Form
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Urgent contact note -->
+          <div class="urgent-note">
+            <p>
+              For urgent issues, contact us directly at
+              <a href="mailto:caduganda@gmail.com" class="green">caduganda@gmail.com</a>
+              or WhatsApp
+              <a href="https://wa.me/256702797391" target="_blank" rel="noopener noreferrer" class="blue">+256 702 797 391</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-link">
+            <img src="../assets/favicon-CNdghIRy.png" alt="CAD Logo" />
+            <span class="footer-brand-text">Community Aid<br /><span>for Development</span></span>
+          </a>
+          <p>Community Aid for Development Initiative. A youth-led force for change empowering rural and underserved communities in Uganda through digital skills, livelihood, and leadership.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="report-issue.html">Report an Issue</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-contact-list">
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Uganda</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:caduganda@gmail.com">caduganda@gmail.com</a></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.89a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg><a href="tel:+256702797391">+256 702 797 391</a></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><a href="https://wa.me/256702797391" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Support the Mission</h3>
+          <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1.5rem;">Your support helps us build computer labs, train youth, and plant seeds for local food security.</p>
+          <a href="contact.html" class="footer-donate-btn">Donate Now</a>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Community Aid for Development Initiative (CAD Uganda). All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

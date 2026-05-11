@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impact – Community Aid for Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== Stats Banner ===== */
+    .stats-banner {
+      padding: 5rem 0;
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 640px)  { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .stat-item {
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .stat-item + .stat-item {
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    @media (min-width: 640px) {
+      .stat-item + .stat-item { border-top: none; }
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ===== Impact Breakdown ===== */
+    .breakdown-section {
+      padding: 6rem 0;
+      background-color: #ffffff;
+    }
+
+    .breakdown-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .breakdown-header .eyebrow {
+      display: inline-block;
+      color: var(--secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .breakdown-header h2 {
+      font-size: clamp(2rem, 4vw, 3.125rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+
+    .breakdown-header h2 span { color: var(--primary); }
+
+    .breakdown-header p {
+      font-size: 1.125rem;
+      color: #475569;
+      max-width: 40rem;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: start;
+      max-width: 62.5rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 1024px) {
+      .breakdown-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Donut chart approximation using a div stack */
+    .donut-chart {
+      width: 100%;
+      max-width: 22rem;
+      margin: 0 auto;
+    }
+
+    .donut-svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Impact bars legend */
+    .impact-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .impact-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid #f1f5f9;
+      background-color: #ffffff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .impact-bar-item:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.07);
+    }
+
+    .impact-color-bar {
+      width: 1rem;
+      height: 3.5rem;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .impact-bar-info {
+      flex: 1;
+    }
+
+    .impact-bar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.375rem;
+    }
+
+    .impact-bar-name {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.875rem;
+      color: #0f172a;
+    }
+
+    .impact-bar-pct {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* ===== Portrait Story ===== */
+    .portrait-section {
+      padding: 6rem 0;
+      background-color: #020617;
+      color: #ffffff;
+    }
+
+    .portrait-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 1024px) {
+      .portrait-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .portrait-grid img {
+      width: 100%;
+      max-height: 35rem;
+      object-fit: cover;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,.5);
+    }
+
+    .portrait-text .eyebrow {
+      display: inline-block;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .portrait-text h2 {
+      font-size: clamp(2rem, 4vw, 3.125rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .portrait-text h2 span { color: var(--primary); }
+
+    .portrait-text p {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+    }
+
+    .portrait-text p:last-child {
+      color: #64748b;
+    }
+
+    /* ===== Testimonials ===== */
+    .testimonials-section {
+      padding: 6rem 0;
+      background-color: #f8fafc;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .testimonials-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0f172a;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 62.5rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .testimonial-card {
+      background-color: #ffffff;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.07);
+      position: relative;
+    }
+
+    .testimonial-card.border-green { border-top: 4px solid var(--primary); }
+    .testimonial-card.border-blue  { border-top: 4px solid var(--secondary); }
+
+    .testimonial-quote-mark {
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      left: 1.25rem;
+      opacity: 0.15;
+    }
+
+    .testimonial-card.border-green .testimonial-quote-mark { color: var(--primary); }
+    .testimonial-card.border-blue  .testimonial-quote-mark { color: var(--secondary); }
+
+    .testimonial-text {
+      font-size: 1.125rem;
+      color: #334155;
+      font-style: italic;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0f172a;
+    }
+
+    .testimonial-role {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="../assets/favicon-CNdghIRy.png" alt="Community Aid for Development Logo" />
+        <span class="navbar-brand-text">Community Aid<br /><span>for Development</span></span>
+      </a>
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html" class="active">Impact</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+        </ul>
+      </nav>
+      <div class="navbar-cta"><a href="contact.html">Support Our Work</a></div>
+      <button class="mobile-menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-menu">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a><a href="partners.html">Partners</a><a href="contact.html">Contact</a>
+      <a href="report-issue.html">Report Issue</a>
+      <a href="contact.html" class="mobile-cta">Support Our Work</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <img src="../assets/annie-spratt-cVEOh_JJmEE-unsplash_1775054797539-B1rExYw3.jpg" alt="Impact header" class="page-header-bg" />
+      <div class="page-header-gradient"></div>
+      <div class="container page-header-content">
+        <h1>Our Impact</h1>
+        <p>Numbers that matter. Lives changed. Communities empowered.</p>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-banner">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">1,200+</div>
+            <div class="stat-label">Youth Trained in Digital Skills</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">45</div>
+            <div class="stat-label">Rural Communities Reached</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">300+</div>
+            <div class="stat-label">Farming Enterprises Supported</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">8</div>
+            <div class="stat-label">Computer Labs Established</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Breakdown -->
+    <section class="breakdown-section">
+      <div class="container">
+
+        <div class="breakdown-header">
+          <span class="eyebrow">Data-Driven Action</span>
+          <h2>Community Impact <span>Breakdown</span></h2>
+          <div class="divider-primary"></div>
+          <p style="margin-top: 1.5rem;">
+            Since our founding, Community Aid for Development has tackled a range of urgent issues affecting rural Ugandan communities.
+            Here is how our work breaks down across key impact areas.
+          </p>
+        </div>
+
+        <div class="breakdown-grid">
+
+          <!-- Donut chart (CSS/SVG approximation) -->
+          <div class="donut-chart">
+            <svg class="donut-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- Segments drawn as SVG paths for a donut chart -->
+              <!-- Climate Awareness: 28% -->
+              <circle r="70" cx="100" cy="100" fill="transparent" stroke="#2563EB"
+                stroke-width="40"
+                stroke-dasharray="123.7 316.6"
+                stroke-dashoffset="0"
+                transform="rotate(-90 100 100)" />
+              <!-- Waste Management: 22% -->
+              <circle r="70" cx="100" cy="100" fill="transparent" stroke="#00914C"
+                stroke-width="40"
+                stroke-dasharray="97.2 316.6"
+                stroke-dashoffset="-123.7"
+                transform="rotate(-90 100 100)" />
+              <!-- Deforestation: 18% -->
+              <circle r="70" cx="100" cy="100" fill="transparent" stroke="#16a34a"
+                stroke-width="40"
+                stroke-dasharray="79.5 316.6"
+                stroke-dashoffset="-220.9"
+                transform="rotate(-90 100 100)" />
+              <!-- Digital Skills: 20% -->
+              <circle r="70" cx="100" cy="100" fill="transparent" stroke="#0ea5e9"
+                stroke-width="40"
+                stroke-dasharray="88.3 316.6"
+                stroke-dashoffset="-300.4"
+                transform="rotate(-90 100 100)" />
+              <!-- Community Livelihood: 12% -->
+              <circle r="70" cx="100" cy="100" fill="transparent" stroke="#f59e0b"
+                stroke-width="40"
+                stroke-dasharray="53.0 316.6"
+                stroke-dashoffset="-38.7"
+                transform="rotate(-90 100 100)" />
+              <!-- Inner white circle to create donut effect -->
+              <circle r="50" cx="100" cy="100" fill="#ffffff" />
+            </svg>
+          </div>
+
+          <!-- Bars Legend -->
+          <div class="impact-bars">
+
+            <div class="impact-bar-item">
+              <div class="impact-color-bar" style="background-color: #2563EB;"></div>
+              <div class="impact-bar-info">
+                <div class="impact-bar-top">
+                  <span class="impact-bar-name">Climate Awareness</span>
+                  <span class="impact-bar-pct" style="color: #2563EB;">28%</span>
+                </div>
+                <div class="stat-bar-track">
+                  <div class="stat-bar-fill" style="width: 28%; background-color: #2563EB;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-bar-item">
+              <div class="impact-color-bar" style="background-color: #00914C;"></div>
+              <div class="impact-bar-info">
+                <div class="impact-bar-top">
+                  <span class="impact-bar-name">Waste Management</span>
+                  <span class="impact-bar-pct" style="color: #00914C;">22%</span>
+                </div>
+                <div class="stat-bar-track">
+                  <div class="stat-bar-fill" style="width: 22%; background-color: #00914C;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-bar-item">
+              <div class="impact-color-bar" style="background-color: #16a34a;"></div>
+              <div class="impact-bar-info">
+                <div class="impact-bar-top">
+                  <span class="impact-bar-name">Deforestation Prevention</span>
+                  <span class="impact-bar-pct" style="color: #16a34a;">18%</span>
+                </div>
+                <div class="stat-bar-track">
+                  <div class="stat-bar-fill" style="width: 18%; background-color: #16a34a;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-bar-item">
+              <div class="impact-color-bar" style="background-color: #0ea5e9;"></div>
+              <div class="impact-bar-info">
+                <div class="impact-bar-top">
+                  <span class="impact-bar-name">Digital Skills Training</span>
+                  <span class="impact-bar-pct" style="color: #0ea5e9;">20%</span>
+                </div>
+                <div class="stat-bar-track">
+                  <div class="stat-bar-fill" style="width: 20%; background-color: #0ea5e9;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-bar-item">
+              <div class="impact-color-bar" style="background-color: #f59e0b;"></div>
+              <div class="impact-bar-info">
+                <div class="impact-bar-top">
+                  <span class="impact-bar-name">Community Livelihood</span>
+                  <span class="impact-bar-pct" style="color: #f59e0b;">12%</span>
+                </div>
+                <div class="stat-bar-track">
+                  <div class="stat-bar-fill" style="width: 12%; background-color: #f59e0b;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portrait Story -->
+    <section class="portrait-section">
+      <div class="container">
+        <div class="portrait-grid">
+          <img
+            src="../assets/joshua-oluwagbemiga-Jq0coU4cdFE-unsplash_1775054797540-BKzcwXma.jpg"
+            alt="Young person whose life has been touched by Community Aid for Development"
+          />
+          <div class="portrait-text">
+            <span class="eyebrow">The Human Side of Impact</span>
+            <h2>Behind Every Number<br />Is a <span>Life Changed</span></h2>
+            <p>
+              Statistics tell part of the story. But real impact is the 19-year-old in Karamoja who opened a laptop for the first time
+              and wrote her first line of code. It's the farmer who doubled his yield using techniques from our livelihood program.
+              It's the young woman who now speaks at district council meetings.
+            </p>
+            <p>
+              Every resource we raise, every lab we build, every training we run is accountable to these faces — the youth of rural Uganda
+              who deserve a fair shot at opportunity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="testimonials-header">
+          <h2>Voices from the Ground</h2>
+          <div class="divider-primary" style="background-color: var(--secondary);"></div>
+        </div>
+        <div class="testimonials-grid">
+
+          <div class="testimonial-card border-green">
+            <div class="testimonial-quote-mark">"</div>
+            <p class="testimonial-text">
+              Before Community Aid for Development built the computer lab in our village, I had never touched a keyboard. Now,
+              I am learning web development and hope to build a platform for local farmers to sell their produce directly.
+            </p>
+            <div class="testimonial-author">Agaba Pretty</div>
+            <div class="testimonial-role">Digital Skills Graduate</div>
+          </div>
+
+          <div class="testimonial-card border-blue">
+            <div class="testimonial-quote-mark">"</div>
+            <p class="testimonial-text">
+              The smart farming techniques I learned through the Livelihood program helped me survive the drought.
+              We are no longer just surviving; we are planning for the future.
+            </p>
+            <div class="testimonial-author">Kusasira Andrew</div>
+            <div class="testimonial-role">Agri-preneur</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-link">
+            <img src="../assets/favicon-CNdghIRy.png" alt="CAD Logo" />
+            <span class="footer-brand-text">Community Aid<br /><span>for Development</span></span>
+          </a>
+          <p>Community Aid for Development Initiative. A youth-led force for change empowering rural and underserved communities in Uganda through digital skills, livelihood, and leadership.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="report-issue.html">Report an Issue</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-contact-list">
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Uganda</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:caduganda@gmail.com">caduganda@gmail.com</a></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.89a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg><a href="tel:+256702797391">+256 702 797 391</a></li>
+            <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><a href="https://wa.me/256702797391" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Support the Mission</h3>
+          <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1.5rem;">Your support helps us build computer labs, train youth, and plant seeds for local food security.</p>
+          <a href="contact.html" class="footer-donate-btn">Donate Now</a>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Community Aid for Development Initiative (CAD Uganda). All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

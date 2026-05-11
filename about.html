@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Community Aid for Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== Story / Values Section ===== */
+    .story-section {
+      padding: 6rem 0;
+      background-color: #ffffff;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 1024px) {
+      .story-grid {
+        grid-template-columns: 3fr 2fr;
+        align-items: start;
+      }
+    }
+
+    .story-section h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+    }
+
+    .story-section p {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: #475569;
+      margin-bottom: 2rem;
+    }
+
+    .mission-block {
+      margin: 3rem 0;
+      padding: 2rem;
+      background-color: #f8fafc;
+      border-left: 4px solid var(--primary);
+    }
+
+    .mission-block h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+
+    .mission-block p {
+      font-size: 1.25rem;
+      color: #334155;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .values-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .value-card {
+      padding: 1.5rem;
+      border: 1px solid #e2e8f0;
+      background-color: #ffffff;
+    }
+
+    .value-card h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-family: var(--font-sans);
+    }
+
+    .value-card p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Side images */
+    .story-images {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .story-images img:first-child {
+      width: 100%;
+      height: 14rem;
+      object-fit: cover;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+    }
+
+    .story-images img:last-child {
+      width: 100%;
+      height: 16rem;
+      object-fit: cover;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+    }
+
+    /* ===== Team Section ===== */
+    .team-section {
+      padding: 6rem 0;
+      background-color: #020617;
+      color: #ffffff;
+    }
+
+    .team-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .team-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .team-header p {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      line-height: 1.75;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px)  { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .team-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .team-card {
+      background-color: #0f172a;
+      border: 1px solid #1e293b;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .team-card:hover {
+      border-color: var(--primary);
+    }
+
+    .team-card-photo {
+      position: relative;
+      overflow: hidden;
+      background-color: #0f172a;
+    }
+
+    .team-card-photo img {
+      width: 100%;
+      display: block;
+    }
+
+    .team-card-photo-tall img {
+      height: 16rem;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .team-card-photo-auto img {
+      object-fit: contain;
+    }
+
+    .team-card-accent {
+      height: 4px;
+      background-color: #1e293b;
+      transition: background-color 0.3s;
+    }
+
+    .team-card:hover .team-card-accent {
+      background-color: var(--primary);
+    }
+
+    .team-card-body {
+      padding: 1.5rem;
+    }
+
+    .team-card-body h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 0.25rem;
+    }
+
+    .team-card-role {
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .team-card-body p {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="../assets/favicon-CNdghIRy.png" alt="Community Aid for Development Logo" />
+        <span class="navbar-brand-text">
+          Community Aid<br />
+          <span>for Development</span>
+        </span>
+      </a>
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+        </ul>
+      </nav>
+      <div class="navbar-cta">
+        <a href="contact.html">Support Our Work</a>
+      </div>
+      <button class="mobile-menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a>
+      <a href="partners.html">Partners</a>
+      <a href="contact.html">Contact</a>
+      <a href="report-issue.html">Report Issue</a>
+      <a href="contact.html" class="mobile-cta">Support Our Work</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <img
+        src="../assets/annie-spratt-cVEOh_JJmEE-unsplash_1775054797539-B1rExYw3.jpg"
+        alt="Community photo background"
+        class="page-header-bg"
+      />
+      <div class="page-header-gradient"></div>
+      <div class="container page-header-content">
+        <h1>Our Story</h1>
+        <p>A youth-led initiative rooted in community, driven by a vision of a digitally empowered, self-sustaining rural Uganda.</p>
+      </div>
+    </section>
+
+    <!-- Founding Story & Values -->
+    <section class="story-section">
+      <div class="container">
+        <div class="story-grid">
+
+          <!-- Left: Text Column -->
+          <div>
+            <h2>Founding Vision</h2>
+            <p>
+              Community Aid for Development was born out of a stark realization: talent is equally distributed, but opportunity is not.
+              In the rural and underserved communities of Uganda, an entire generation of young people is being left out of the global digital economy.
+            </p>
+            <p>
+              We refused to wait for outside intervention. Formed by young Ugandans who have lived these challenges,
+              Community Aid for Development is a grassroots organization dedicated to bridging the divide. We believe that empowering
+              a young person with digital skills, agricultural knowledge, and leadership capabilities transforms not just an individual,
+              but an entire community.
+            </p>
+
+            <div class="mission-block">
+              <h3>Our Mission</h3>
+              <p>
+                To equip young people in underserved communities with the digital, livelihood, and leadership skills
+                they need to create sustainable local solutions with global impact.
+              </p>
+            </div>
+
+            <h2>Our Values</h2>
+            <div class="values-grid">
+              <div class="value-card">
+                <h4>Community-Led</h4>
+                <p>We don't impose solutions from the outside. We build alongside the communities we serve, ensuring ownership and sustainability.</p>
+              </div>
+              <div class="value-card">
+                <h4>Urgency</h4>
+                <p>The digital divide widens every day. We act with the urgency required to bring marginalized youth into the modern economy.</p>
+              </div>
+              <div class="value-card">
+                <h4>Resilience</h4>
+                <p>We operate in environments where resources are scarce. We find a way to make it work, leveraging innovation and local knowledge.</p>
+              </div>
+              <div class="value-card">
+                <h4>Transparency</h4>
+                <p>Every resource entrusted to us is a trust we take seriously. We operate with complete openness about our challenges and our impact.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Images Column -->
+          <div class="story-images">
+            <img
+              src="../images/program-livelihood.png"
+              alt="community faming and irrigation time "
+            />
+            <img
+              src="../images/program-community.png"
+              alt="community awareness on climate conservation"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="team-section">
+      <div class="container">
+
+        <div class="team-header">
+          <h2>Meet the Team</h2>
+          <div class="divider-primary"></div>
+          <p style="margin-top: 1.5rem;">
+            Community Aid for Development is proudly youth-led. Our team consists of local technologists, agricultural innovators,
+            and community organizers who understand the terrain because it is their home.
+          </p>
+        </div>
+
+        <div class="team-grid">
+
+          <!-- Mwesigwa David -->
+          <div class="team-card">
+            <div class="team-card-photo team-card-photo-tall">
+              <img src="../assets/Mwesigwa_David_1775057768752-VBYb-OqK.png" alt="Mwesigwa David" />
+            </div>
+            <div class="team-card-accent"></div>
+            <div class="team-card-body">
+              <h3>Mwesigwa David</h3>
+              <div class="team-card-role">Founder</div>
+              <p>A passionate community builder who started Community Aid for Development from the ground up, driven by a vision of digital equity for rural Ugandan youth.</p>
+            </div>
+          </div>
+
+          <!-- Agaba Pretty -->
+          <div class="team-card">
+            <div class="team-card-photo team-card-photo-auto">
+              <img src="../assets/Agaba_Pretty_1775057768752-CkR1KP5W.png" alt="Agaba Pretty" />
+            </div>
+            <div class="team-card-accent"></div>
+            <div class="team-card-body">
+              <h3>Agaba Pretty</h3>
+              <div class="team-card-role">Co-Founder</div>
+              <p>Co-architect of the organization's programs and strategy, dedicated to creating pathways for young women into technology and leadership.</p>
+            </div>
+          </div>
+
+          <!-- Kusasira Andrew -->
+          <div class="team-card">
+            <div class="team-card-photo team-card-photo-tall">
+              <img src="../assets/Kusasira_Andrew_1775057768752-Dc95qP7l.png" alt="Kusasira Andrew" />
+            </div>
+            <div class="team-card-accent"></div>
+            <div class="team-card-body">
+              <h3>Kusasira Andrew</h3>
+              <div class="team-card-role">Secretary</div>
+              <p>Handles organizational administration and coordination, ensuring that the team runs efficiently and community commitments are honored.</p>
+            </div>
+          </div>
+
+          <!-- Lukia H. -->
+          <div class="team-card">
+            <div class="team-card-photo team-card-photo-auto">
+              <img src="../assets/Lukia_H_1775057768752-xRNfXgWu.png" alt="Lukia H." />
+            </div>
+            <div class="team-card-accent"></div>
+            <div class="team-card-body">
+              <h3>Lukia H.</h3>
+              <div class="team-card-role">Community Coordinator</div>
+              <p>The frontline link between the organization and its communities, managing outreach, local partnerships, and on-the-ground program delivery.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-link">
+            <img src="../assets/favicon-CNdghIRy.png" alt="CAD Logo" />
+            <span class="footer-brand-text">Community Aid<br /><span>for Development</span></span>
+          </a>
+          <p>Community Aid for Development Initiative. A youth-led force for change empowering rural and underserved communities in Uganda through digital skills, livelihood, and leadership.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="report-issue.html">Report an Issue</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-contact-list">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Uganda</span>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:caduganda@gmail.com">caduganda@gmail.com</a>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.89a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+              <a href="tel:+256702797391">+256 702 797 391</a>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <a href="https://wa.me/256702797391" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Support the Mission</h3>
+          <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1.5rem;">Your support helps us build computer labs, train youth, and plant seeds for local food security.</p>
+          <a href="contact.html" class="footer-donate-btn">Donate Now</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Community Aid for Development Initiative (CAD Uganda). All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

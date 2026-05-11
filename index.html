@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home – Community Aid for Development</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 90vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0f172a;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #020617, rgba(15,23,42,0.6) 60%, transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 56rem;
+      padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #2563EB;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .hero-content p {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      color: #ffffff;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .hero-btns { flex-direction: row; justify-content: center; }
+    }
+
+    /* ===== Mission ===== */
+    .mission {
+      padding: 6rem 0;
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    .mission h2 {
+      font-size: clamp(2rem, 4vw, 3.125rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 2rem;
+    }
+
+    .mission h2 span {
+      color: var(--secondary);
+    }
+
+    .mission p {
+      font-size: 1.25rem;
+      color: #475569;
+      line-height: 1.75;
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+
+    /* ===== Pillars ===== */
+    .pillars {
+      padding: 6rem 0;
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .pillars-heading {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .pillars-heading h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0f172a;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .pillar-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.07);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+
+    .pillar-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+    }
+
+    .pillar-card-img {
+      width: 100%;
+      height: 14rem;
+      object-fit: cover;
+      transition: transform 0.7s;
+    }
+
+    .pillar-card:hover .pillar-card-img {
+      transform: scale(1.05);
+    }
+
+    .pillar-card-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pillar-card-body {
+      padding: 2rem;
+      flex: 1;
+    }
+
+    .pillar-icon {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-icon-green { background-color: rgba(0,145,76,.1); color: var(--primary); }
+    .pillar-icon-blue  { background-color: rgba(37,99,235,.1); color: var(--secondary); }
+    .pillar-icon-dark  { background-color: rgba(15,23,42,.1); color: #0f172a; }
+
+    .pillar-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+
+    .pillar-card p {
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .pillar-link:hover { opacity: 0.75; }
+    .pillar-link-green { color: var(--primary); }
+    .pillar-link-blue  { color: var(--secondary); }
+    .pillar-link-dark  { color: #0f172a; }
+
+    /* ===== Who We Serve ===== */
+    .who-we-serve {
+      padding: 6rem 0;
+      background-color: #020617;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .who-we-serve-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .who-we-serve-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .who-we-serve h2 {
+      font-size: clamp(2rem, 4vw, 3.125rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .who-we-serve > .container > .who-we-serve-grid > div:first-child > p {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .serve-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .serve-number {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    .serve-item h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-sans);
+    }
+
+    .serve-item p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .who-img-wrap {
+      position: relative;
+    }
+
+    .who-img-wrap img {
+      width: 100%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+
+    .age-badge {
+      display: none;
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      width: 12rem;
+      height: 12rem;
+      background-color: var(--secondary);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .age-badge { display: flex; }
+    }
+
+    .age-badge-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .age-badge-label {
+      color: rgba(255,255,255,.8);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      padding: 6rem 0;
+      background-color: var(--primary);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .cta p {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      max-width: 40rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .cta-btns { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       NAVBAR
+       =================================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+
+      <a href="index.html" class="navbar-brand">
+        <img src="../assets/favicon-CNdghIRy.png" alt="Community Aid for Development Logo" />
+        <span class="navbar-brand-text">
+          Community Aid<br />
+          <span>for Development</span>
+        </span>
+      </a>
+
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="impact.html">Impact</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+        </ul>
+      </nav>
+
+      <div class="navbar-cta">
+        <a href="contact.html">Support Our Work</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a>
+      <a href="partners.html">Partners</a>
+      <a href="contact.html">Contact</a>
+      <a href="report-issue.html">Report Issue</a>
+      <a href="contact.html" class="mobile-cta">Support Our Work</a>
+    </nav>
+  </header>
+
+  <!-- ===================================================
+       MAIN CONTENT
+       =================================================== -->
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <img
+        src="../assets/seth-doyle-zf9_yiAekJs-unsplash_1775054797540-Ckt-HDPe.jpg"
+        alt="Ugandan children running through their community"
+        class="hero-bg"
+      />
+      <div class="hero-gradient"></div>
+
+      <div class="hero-content">
+        <h1>Community Aid for Development Initiative</h1>
+        <p>Empowering Youth Through Digital Skills and Community Innovation</p>
+        <div class="hero-btns">
+          <a href="contact.html" class="btn btn-primary btn-lg">Support Our Work</a>
+          <a href="programs.html" class="btn btn-outline-white btn-lg">Our Programs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission">
+      <div class="container">
+        <div style="max-width: 48rem; margin: 0 auto;">
+          <h2>
+            This isn't charity.<br />
+            It's <span>Community Power</span>.
+          </h2>
+          <p>
+            Community Aid for Development is a youth-led initiative operating where government fails and global resources rarely reach.
+            We are building computer labs, training youth in coding and digital literacy, planting seeds for local food security,
+            and connecting rural Uganda to global opportunity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three Pillars -->
+    <section class="pillars">
+      <div class="container">
+
+        <div class="pillars-heading">
+          <h2>Our Pillars</h2>
+          <div class="divider-primary"></div>
+        </div>
+
+        <div class="pillars-grid">
+
+          <!-- Digital Skills -->
+          <div class="pillar-card">
+            <div class="pillar-card-img-wrap">
+              <img
+                src="../assets/kojo-kwarteng-n5duzZWYReQ-unsplash_1775054797540-CbLhpZQS.jpg"
+                alt="Digital Skills Training"
+                class="pillar-card-img"
+              />
+            </div>
+            <div class="pillar-card-body">
+              <div class="pillar-icon pillar-icon-green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              <h3>Digital Skills</h3>
+              <p>
+                Building computer labs and training youth in coding, digital literacy, and modern software development
+                to bridge the global opportunity gap.
+              </p>
+              <a href="programs.html" class="pillar-link pillar-link-green">
+                Learn More
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Youth Livelihood -->
+          <div class="pillar-card">
+            <div class="pillar-card-img-wrap">
+              <img
+                src="../images/Farmer spraying through lush tropical field.png"
+                alt="Youth Livelihood and Innovation"
+                class="pillar-card-img"
+              />
+            </div>
+           
+            <div class="pillar-card-body">
+              <div class="pillar-icon pillar-icon-blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 20h10" /><path d="M10 20c5.5-2.5.8-6.4 3-10" /><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" /><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
+                </svg>
+              </div>
+              <h3>Youth Livelihood</h3>
+              <p>
+                Fostering innovation in agriculture and local enterprise, planting seeds for food security,
+                and creating sustainable economic independence.
+              </p>
+              <a href="programs.html" class="pillar-link pillar-link-blue">
+                Learn More
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Global Engagement -->
+          <div class="pillar-card">
+            <div class="pillar-card-img-wrap">
+              <img
+                src="../assets/annie-spratt-cVEOh_JJmEE-unsplash_1775054797539-B1rExYw3.jpg"
+                alt="Community Development and Global Engagement"
+                class="pillar-card-img"
+              />
+            </div>
+            <div class="pillar-card-body">
+              <div class="pillar-icon pillar-icon-dark">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </div>
+              <h3>Global Engagement</h3>
+              <p>
+                Empowering young leaders to participate in global dialogues, driving community-led solutions
+                to pressing systemic challenges.
+              </p>
+              <a href="programs.html" class="pillar-link pillar-link-dark">
+                Learn More
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Who We Serve -->
+    <section class="who-we-serve">
+      <div class="container">
+        <div class="who-we-serve-grid">
+
+          <!-- Text Column -->
+          <div>
+            <h2>Who We Serve</h2>
+            <p style="font-size: 1.25rem; color: #94a3b8; line-height: 1.75; margin-bottom: 2rem;">
+              Our focus is unyielding: young people aged 15–35 from rural and underserved communities across Uganda.
+            </p>
+
+            <div class="serve-item">
+              <div class="serve-number">1</div>
+              <div>
+                <h4>Rural Youth</h4>
+                <p>Disconnected from major urban centers, lacking basic digital infrastructure and formal employment opportunities.</p>
+              </div>
+            </div>
+
+            <div class="serve-item">
+              <div class="serve-number">2</div>
+              <div>
+                <h4>Young Women</h4>
+                <p>Historically excluded from tech and leadership, we prioritize programs that bring women into the digital economy.</p>
+              </div>
+            </div>
+
+            <div class="serve-item">
+              <div class="serve-number">3</div>
+              <div>
+                <h4>Local Innovators</h4>
+                <p>Entrepreneurs and farmers looking for modern tools and knowledge to scale their impact locally.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Column -->
+          <div class="who-img-wrap">
+            <img
+              src="../images/jeff-ackley-YwDo_HwORXs-unsplash.jpg"
+              alt="Poor Waste Managment"
+            />
+            <div class="age-badge">
+              <div>
+                <div class="age-badge-number">15–35</div>
+                <div class="age-badge-label">Years Old</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <div style="max-width: 48rem; margin: 0 auto;">
+          <h2>Ready to fuel the movement?</h2>
+          <p>
+            Real lives depend on this organization getting attention and funding.
+            Partner with us to build a future where every Ugandan youth has the tools to thrive.
+          </p>
+          <div class="cta-btns">
+            <a href="contact.html" class="btn btn-dark btn-lg">Donate Now</a>
+            <a href="partners.html" class="btn btn-outline-white btn-lg">Become a Partner</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================
+       FOOTER
+       =================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-link">
+            <img src="../assets/favicon-CNdghIRy.png" alt="CAD Logo" />
+            <span class="footer-brand-text">
+              Community Aid<br /><span>for Development</span>
+            </span>
+          </a>
+          <p>
+            Community Aid for Development Initiative. A youth-led force for change empowering rural and underserved
+            communities in Uganda through digital skills, livelihood, and leadership.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="partners.html">Partner With Us</a></li>
+            <li><a href="report-issue.html">Report an Issue</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-contact-list">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Uganda</span>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:caduganda@gmail.com">caduganda@gmail.com</a>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.89a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+              <a href="tel:+256702797391">+256 702 797 391</a>
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <a href="https://wa.me/256702797391" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Donate -->
+        <div>
+          <h3 class="footer-heading">Support the Mission</h3>
+          <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1.5rem;">
+            Your support helps us build computer labs, train youth, and plant seeds for local food security.
+          </p>
+          <a href="contact.html" class="footer-donate-btn">Donate Now</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 Community Aid for Development Initiative (CAD Uganda). All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile menu toggle script -->
+  <script>
+    const menuBtn    = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
